@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy 21st, Penny</title>
+  <meta name="theme-color" content="#4a1d96">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..800,0..100,0..1&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+  <div class="petals" id="petals" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <!-- 1. Envelope -->
+  <header class="hero" id="hero">
+    <button class="envelope" id="envelope" aria-label="Open your birthday card">
+      <span class="env-back"></span>
+      <span class="env-card"><b>21</b></span>
+      <span class="env-front"></span>
+      <span class="env-flap"></span>
+      <span class="env-to">For Estelle</span>
+    </button>
+    <p class="hero-hint" id="hint">Tap the envelope</p>
+    <div class="hero-title">
+      <h1>Happy 21st, Penny</h1>
+      <p>I made you a little corner of the internet. Take your time.</p>
+      <a class="down" href="#lane-section">Start the walk</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 2. Memory lane -->
+    <section class="band band-light" id="lane-section">
+      <div class="inner">
+        <h2>Memory lane</h2>
+        <p class="lead">A few moments worth keeping.</p>
+        <ol class="lane" id="lane"></ol>
+      </div>
+    </section>
+
+    <!-- 3. Banter -->
+    <section class="band band-lilac" id="banter">
+      <div class="inner">
+        <h2>Caught on camera</h2>
+        <p class="lead">Evidence that you are, in fact, a goofball. I love it.</p>
+        <div class="collage" id="collage"></div>
+      </div>
+    </section>
+
+    <!-- 4. 21 reasons -->
+    <section class="band band-light" id="reasons-section">
+      <div class="inner">
+        <h2>21 reasons</h2>
+        <p class="lead">One for every year. Tap a flower to open it.</p>
+        <div class="reasons" id="reasons"></div>
+        <p class="count" id="count" aria-live="polite">0 of 21 opened</p>
+      </div>
+    </section>
+
+    <!-- 5. Music -->
+    <section class="band band-grape" id="music">
+      <div class="inner center">
+        <h2>Dance floor</h2>
+        <p class="lead">Press play. No one's watching, I promise.</p>
+        <button class="btn" id="danceBtn" aria-pressed="false">Play and dance</button>
+        <p class="note" id="songNote"></p>
+      </div>
+    </section>
+
+    <!-- 6. Finale -->
+    <section class="band band-night" id="finale">
+      <div class="inner center">
+        <h2>Make a wish</h2>
+        <div class="cake" id="cake" aria-hidden="true">
+          <div class="candles" id="candles"></div>
+          <div class="tier tier-top"></div>
+          <div class="tier tier-bottom"></div>
+          <div class="plate"></div>
+        </div>
+        <button class="btn" id="blowBtn">Blow out the candles</button>
+        <article class="letter" id="letter" hidden>
+          <h3>Estelle, my Penny,</h3>
+          <!-- EDIT THIS LETTER: make it yours -->
+          <p>Twenty-one looks good on you. Thank you for being so gentle with the world, and for making my days softer just by being in them.</p>
+          <p>I hope today is full of flowers, music, dancing and cake.</p>
+          <p>Happy birthday. I love you.</p>
+          <p class="sign">John</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="reasonDialog" aria-labelledby="reasonNum">
+    <p class="dlg-num" id="reasonNum"></p>
+    <p class="dlg-text" id="reasonText"></p>
+    <button class="btn btn-small" id="reasonClose">Close</button>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
