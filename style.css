@@ -6,6 +6,8 @@
   --lilac: #e4d4ff;
   --petal: #f8f2ff;
   --pink: #ff8fd8;
+  --hot: #ff5fb8;
+  --candy: #ffc2ea;
   --gold: #ffc857;
   --serif: "Fraunces", Georgia, serif;
   --sans: "Figtree", system-ui, sans-serif;
@@ -19,6 +21,7 @@ body {
   color: var(--ink);
   background: var(--petal);
   line-height: 1.6;
+  overflow-x: hidden;
 }
 body.locked { overflow: hidden; }
 img { max-width: 100%; display: block; }
@@ -122,18 +125,59 @@ h2 { font-size: clamp(2rem, 7vw, 3.4rem); font-weight: 700; }
   text-decoration: none;
 }
 
-/* ---------- Bands ---------- */
-.band { padding: 5rem 1.25rem; }
-.inner { max-width: 62rem; margin: 0 auto; }
+/* ---------- Heart bridges (between every section) ---------- */
+.bridge {
+  --from: #2a1250; --to: #f8f2ff; --heart: var(--pink); --text: #fff;
+  position: relative;
+  height: 75vh;
+  min-height: 420px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(var(--from), var(--to));
+}
+.bridge-1 { --from: #2a1250; --to: #f8f2ff; --heart: #ff8fd8; --text: #2a1250; }
+.bridge-2 { --from: #f8f2ff; --to: #ffc2ea; --heart: #7c3aed; --text: #ffffff; }
+.bridge-3 { --from: #ffc2ea; --to: #1b0b3a; --heart: #ffc857; --text: #2a1250; }
+.bridge-4 { --from: #1b0b3a; --to: #3a0f66; --heart: #ff8fd8; --text: #2a1250; }
+.bridge-5 { --from: #3a0f66; --to: #1e0d3d; --heart: #ffc857; --text: #2a1250; }
+.bridge-text {
+  position: relative; z-index: 2;
+  margin: 0; padding: 0 1.25rem;
+  max-width: 18ch;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 6vw, 2.6rem);
+  font-weight: 600;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  color: var(--text);
+  opacity: var(--text-o, 0);
+}
+.heart {
+  position: absolute; left: 0; top: 50%;
+  width: 90px; height: 90px; margin-top: -45px;
+  fill: var(--heart);
+  will-change: transform;
+  filter: drop-shadow(0 8px 14px rgba(42, 18, 80, 0.25));
+}
+.heart.h2 { width: 44px; height: 44px; margin-top: -22px; opacity: 0.7; }
+.heart.h3 { width: 28px; height: 28px; margin-top: -14px; opacity: 0.5; }
+
+/* ---------- Scenes ---------- */
+.scene { position: relative; padding: 4.5rem 1.25rem 5.5rem; overflow: hidden; }
+.inner { position: relative; z-index: 2; max-width: 62rem; margin: 0 auto; }
 .inner.center { text-align: center; }
 .lead { margin: 0.6rem 0 2.5rem; font-size: 1.1rem; max-width: 40ch; }
 .center .lead { margin-inline: auto; }
-.band-light { background: var(--petal); }
-.band-lilac { background: var(--lilac); }
-.band-grape { background: var(--grape); color: var(--petal); }
-.band-night { background: #1e0d3d; color: var(--petal); }
 
-/* ---------- Memory lane ---------- */
+/* Scene 1: garden (cream and lilac, photos slide in from the sides) */
+.scene-garden {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(185, 131, 255, 0.18) 0 60px, transparent 61px),
+    radial-gradient(circle at 88% 55%, rgba(255, 143, 216, 0.18) 0 80px, transparent 81px),
+    radial-gradient(circle at 20% 88%, rgba(185, 131, 255, 0.16) 0 50px, transparent 51px),
+    var(--petal);
+}
 .lane { list-style: none; margin: 0; padding: 0 0 0 1.5rem; border-left: 3px dashed var(--orchid); }
 .lane li { position: relative; margin-bottom: 3rem; }
 .lane li::before {
@@ -159,6 +203,10 @@ h2 { font-size: clamp(2rem, 7vw, 3.4rem); font-weight: 700; }
 .polaroid figcaption { margin-top: 0.8rem; font-family: var(--serif); font-style: italic; font-size: 1.05rem; }
 .when { display: block; font-size: 0.85rem; color: var(--violet); font-weight: 600; }
 
+.js .lane li { opacity: 0; transform: translateX(-70px); transition: opacity 0.9s, transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.js .lane li:nth-child(even) { transform: translateX(70px); }
+.js .lane li.in { opacity: 1; transform: none; }
+
 @media (min-width: 760px) {
   .lane { border-left: 0; padding: 0; position: relative; }
   .lane::before {
@@ -172,29 +220,63 @@ h2 { font-size: clamp(2rem, 7vw, 3.4rem); font-weight: 700; }
   .lane li:nth-child(odd) .polaroid { margin-left: auto; }
 }
 
-/* ---------- Collage ---------- */
-.collage { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem 1.5rem; }
+/* Scene 2: candy pop (hot pink, polka dots, photos pop in with a bounce) */
+.scene-pop {
+  background-color: var(--candy);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.55) 3px, transparent 4px);
+  background-size: 28px 28px;
+}
+.scene-pop h2 { color: var(--grape); }
+.pile { display: grid; gap: 3rem 1.5rem; justify-items: center; }
 .snap {
   position: relative;
   margin: 0;
-  width: min(100%, 290px);
-  border-radius: 6px;
+  width: min(100%, 300px);
+  cursor: pointer;
   transform: rotate(var(--tilt, 0deg));
   transition: transform 0.25s;
 }
+.snap img {
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: 50% 30%;
+  border: 7px solid #fff; border-radius: 22px;
+  box-shadow: 8px 8px 0 var(--violet);
+}
 .snap:hover { transform: rotate(0) scale(1.03); }
-.snap img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 6px; border: 6px solid #fff; box-shadow: 0 12px 28px rgba(74, 29, 150, 0.25); }
+.snap.wiggle { animation: wiggle 0.5s; }
+@keyframes wiggle { 20% { transform: rotate(-6deg) scale(1.04); } 50% { transform: rotate(5deg) scale(1.04); } 80% { transform: rotate(-3deg); } }
 .snap figcaption {
-  position: absolute; left: 50%; bottom: -14px;
+  position: absolute; left: 50%; bottom: -18px;
   transform: translateX(-50%) rotate(-2deg);
-  width: max-content; max-width: 90%;
-  padding: 0.35rem 0.9rem;
+  width: max-content; max-width: 92%;
+  padding: 0.4rem 1rem;
   border-radius: 999px;
   background: var(--gold);
-  font-weight: 600; font-size: 0.95rem; text-align: center;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-weight: 600; text-align: center;
+}
+.js .snap { opacity: 0; transform: scale(0.2) rotate(-25deg); transition: opacity 0.3s, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.js .snap.in { opacity: 1; transform: rotate(var(--tilt, 0deg)); }
+.js .snap.in:hover { transform: rotate(0) scale(1.03); }
+@media (min-width: 860px) {
+  .pile { grid-template-columns: repeat(3, 1fr); }
+  .snap:nth-child(2) { margin-top: 3rem; }
 }
 
-/* ---------- 21 reasons ---------- */
+/* Scene 3: dusk (deep violet night garden, flowers bloom) */
+.scene-dusk { background: linear-gradient(#1b0b3a, #2a1250 70%, #3a0f66); color: var(--petal); }
+.stars {
+  position: absolute; inset: 0; z-index: 1;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, #fff, transparent),
+    radial-gradient(2px 2px at 30% 70%, #ffe9a8, transparent),
+    radial-gradient(1.5px 1.5px at 55% 30%, #fff, transparent),
+    radial-gradient(2px 2px at 75% 80%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 90% 15%, #ffe9a8, transparent),
+    radial-gradient(1.5px 1.5px at 65% 55%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 20% 45%, #fff, transparent);
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+@keyframes twinkle { to { opacity: 0.45; } }
 .reasons { display: grid; grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)); gap: 0.9rem; max-width: 36rem; }
 .reason-btn {
   aspect-ratio: 1;
@@ -202,14 +284,17 @@ h2 { font-size: clamp(2rem, 7vw, 3.4rem); font-weight: 700; }
   font-family: var(--serif); font-weight: 700; font-size: 1.25rem;
   color: #fff;
   background: radial-gradient(circle at 35% 30%, var(--orchid), var(--violet));
+  box-shadow: 0 0 18px rgba(185, 131, 255, 0.55);
   border-radius: 62% 38% 55% 45% / 48% 58% 42% 52%;
   transition: transform 0.2s;
 }
 .reason-btn:nth-child(3n) { border-radius: 40% 60% 45% 55% / 60% 42% 58% 40%; }
 .reason-btn:nth-child(3n+1) { border-radius: 55% 45% 38% 62% / 45% 55% 45% 55%; }
 .reason-btn:hover { transform: scale(1.1) rotate(6deg); }
-.reason-btn.seen { background: radial-gradient(circle at 35% 30%, #ffe08a, var(--gold)); color: var(--ink); }
-.count { margin-top: 1.5rem; font-weight: 600; color: var(--violet); }
+.reason-btn.seen { background: radial-gradient(circle at 35% 30%, #ffe08a, var(--gold)); color: var(--ink); box-shadow: 0 0 22px rgba(255, 200, 87, 0.65); }
+.count { margin-top: 1.5rem; font-weight: 600; color: var(--pink); }
+.js .reason-btn { opacity: 0; scale: 0; transition: opacity 0.4s, scale 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.2s; transition-delay: calc(var(--i) * 45ms), calc(var(--i) * 45ms), 0s; }
+.js .reasons.in .reason-btn { opacity: 1; scale: 1; }
 
 dialog {
   width: min(88vw, 24rem);
@@ -220,9 +305,45 @@ dialog {
   color: var(--ink);
   box-shadow: 0 24px 60px rgba(42, 18, 80, 0.45);
 }
-dialog::backdrop { background: rgba(42, 18, 80, 0.6); }
+dialog::backdrop { background: rgba(27, 11, 58, 0.7); }
 .dlg-num { margin: 0; font-family: var(--serif); font-size: 3.2rem; font-weight: 800; color: var(--violet); }
 .dlg-text { margin: 0.5rem 0 1.5rem; font-family: var(--serif); font-size: 1.35rem; line-height: 1.35; }
+
+/* Scene 4: disco (magenta to indigo, spotlights sweep in) */
+.scene-disco { background: radial-gradient(120% 80% at 50% 0%, #8a1c9b 0%, #3a0f66 55%, #240b4d 100%); color: var(--petal); }
+.beam {
+  position: absolute; top: -10%; width: 38%; height: 130%; z-index: 1;
+  background: linear-gradient(rgba(255, 255, 255, 0.28), transparent 75%);
+  clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+  transform-origin: 50% 0;
+  opacity: 0;
+  transition: opacity 1s;
+}
+.beam-l { left: 4%; transform: rotate(-50deg); }
+.beam-r { right: 4%; transform: rotate(50deg); }
+.scene-disco.in .beam { opacity: 1; }
+.scene-disco.in .beam-l { animation: sweepL 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, swayL 5s 1.6s ease-in-out infinite alternate; }
+.scene-disco.in .beam-r { animation: sweepR 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards, swayR 5s 1.6s ease-in-out infinite alternate; }
+@keyframes sweepL { from { transform: rotate(-50deg); } to { transform: rotate(-12deg); } }
+@keyframes sweepR { from { transform: rotate(50deg); } to { transform: rotate(12deg); } }
+@keyframes swayL { from { transform: rotate(-12deg); } to { transform: rotate(-4deg); } }
+@keyframes swayR { from { transform: rotate(12deg); } to { transform: rotate(4deg); } }
+.dance-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; }
+.dance-row .polaroid { width: min(70vw, 240px); color: var(--ink); }
+
+/* Scene 5: night (curtains open to reveal the cake) */
+.scene-night { background: radial-gradient(90% 60% at 50% 100%, #4a1d96 0%, #1e0d3d 70%); color: var(--petal); min-height: 100svh; }
+.curtain {
+  position: absolute; top: 0; bottom: 0; width: 51%; z-index: 5;
+  background: repeating-linear-gradient(90deg, #6d1b7b 0 26px, #8a2b9c 26px 52px);
+  box-shadow: inset 0 -40px 60px rgba(0, 0, 0, 0.35);
+  transition: transform 2s cubic-bezier(0.6, 0, 0.2, 1);
+  pointer-events: none;
+}
+.curtain-l { left: 0; }
+.curtain-r { right: 0; }
+.scene-night.in .curtain-l { transform: translateX(-102%); }
+.scene-night.in .curtain-r { transform: translateX(102%); }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -233,15 +354,17 @@ dialog::backdrop { background: rgba(42, 18, 80, 0.6); }
   transition: transform 0.2s;
 }
 .btn:hover { transform: translateY(-2px); }
+.btn:disabled { opacity: 0.6; cursor: default; }
 .btn-small { padding: 0.6rem 1.4rem; background: var(--violet); color: #fff; }
-.note { margin-top: 1rem; font-size: 0.95rem; color: var(--lilac); }
+.note { margin-top: 1rem; font-size: 0.95rem; color: var(--lilac); min-height: 1.4em; }
 
 /* ---------- Dance mode ---------- */
-@keyframes bob { 50% { transform: translateY(-10px) rotate(var(--r, 0deg)); } }
-body.dance .polaroid,
-body.dance .snap,
-body.dance .reason-btn { animation: bob 0.6s ease-in-out infinite; }
-body.dance .snap:nth-child(2n),
+@keyframes bob { 50% { translate: 0 -10px; } }
+body.dance .dance-row .polaroid,
+body.dance .snap img,
+body.dance .reason-btn,
+body.dance .lane .polaroid { animation: bob 0.6s ease-in-out infinite; }
+body.dance .dance-row .polaroid:nth-child(2n),
 body.dance .reason-btn:nth-child(2n),
 body.dance .lane li:nth-child(even) .polaroid { animation-delay: 0.3s; }
 .note-float {
@@ -260,9 +383,7 @@ body.dance .lane li:nth-child(even) .polaroid { animation-delay: 0.3s; }
   opacity: 0.85;
   animation: fall linear infinite;
 }
-@keyframes fall {
-  to { transform: translate3d(var(--drift, 40px), 110vh, 0) rotate(540deg); }
-}
+@keyframes fall { to { transform: translate3d(var(--drift, 40px), 110vh, 0) rotate(540deg); } }
 #confetti { position: fixed; inset: 0; pointer-events: none; z-index: 30; }
 
 /* ---------- Cake ---------- */
@@ -299,4 +420,7 @@ body.dance .lane li:nth-child(even) .polaroid { animation-delay: 0.3s; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+  .heart.h1 { left: 50%; margin-left: -45px; }
+  .heart.h2, .heart.h3 { display: none; }
+  .bridge-text { opacity: 1; }
 }

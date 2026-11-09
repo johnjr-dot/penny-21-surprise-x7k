@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..800,0..100,0..1;1,9..144,400..800,0..100,0..1&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body class="locked">
   <div class="petals" id="petals" aria-hidden="true"></div>
@@ -32,8 +33,11 @@
   </header>
 
   <main>
-    <!-- 2. Memory lane -->
-    <section class="band band-light" id="lane-section">
+    <!-- Heart bridge: hero to memory lane -->
+    <div class="bridge bridge-1" aria-hidden="true"><p class="bridge-text">First, a walk down memory lane</p></div>
+
+    <!-- 2. Memory lane: garden theme, photos slide in from the sides -->
+    <section class="scene scene-garden" id="lane-section">
       <div class="inner">
         <h2>Memory lane</h2>
         <p class="lead">A few moments worth keeping.</p>
@@ -41,17 +45,22 @@
       </div>
     </section>
 
-    <!-- 3. Banter -->
-    <section class="band band-lilac" id="banter">
+    <div class="bridge bridge-2" aria-hidden="true"><p class="bridge-text">Now, the goofy side</p></div>
+
+    <!-- 3. Goofy side: candy-pop theme, photos pop in -->
+    <section class="scene scene-pop" id="banter">
       <div class="inner">
-        <h2>Caught on camera</h2>
-        <p class="lead">Evidence that you are, in fact, a goofball. I love it.</p>
-        <div class="collage" id="collage"></div>
+        <h2>The goofy side</h2>
+        <p class="lead">Tap a photo. Each one has opinions.</p>
+        <div class="pile" id="pile"></div>
       </div>
     </section>
 
-    <!-- 4. 21 reasons -->
-    <section class="band band-light" id="reasons-section">
+    <div class="bridge bridge-3" aria-hidden="true"><p class="bridge-text">And 21 reasons I adore you</p></div>
+
+    <!-- 4. 21 reasons: dusk theme, flowers bloom -->
+    <section class="scene scene-dusk" id="reasons-section">
+      <div class="stars" aria-hidden="true"></div>
       <div class="inner">
         <h2>21 reasons</h2>
         <p class="lead">One for every year. Tap a flower to open it.</p>
@@ -60,18 +69,27 @@
       </div>
     </section>
 
-    <!-- 5. Music -->
-    <section class="band band-grape" id="music">
+    <div class="bridge bridge-4" aria-hidden="true"><p class="bridge-text">Time to dance</p></div>
+
+    <!-- 5. Dance floor: disco theme, spotlights sweep in -->
+    <section class="scene scene-disco" id="music">
+      <div class="beam beam-l" aria-hidden="true"></div>
+      <div class="beam beam-r" aria-hidden="true"></div>
       <div class="inner center">
         <h2>Dance floor</h2>
         <p class="lead">Press play. No one's watching, I promise.</p>
         <button class="btn" id="danceBtn" aria-pressed="false">Play and dance</button>
         <p class="note" id="songNote"></p>
+        <div class="dance-row" id="danceRow"></div>
       </div>
     </section>
 
-    <!-- 6. Finale -->
-    <section class="band band-night" id="finale">
+    <div class="bridge bridge-5" aria-hidden="true"><p class="bridge-text">One last thing</p></div>
+
+    <!-- 6. Finale: night theme, curtains open -->
+    <section class="scene scene-night" id="finale">
+      <div class="curtain curtain-l" aria-hidden="true"></div>
+      <div class="curtain curtain-r" aria-hidden="true"></div>
       <div class="inner center">
         <h2>Make a wish</h2>
         <div class="cake" id="cake" aria-hidden="true">
